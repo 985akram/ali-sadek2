@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مباريات الذهاب</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+      padding: 20px;
+      background-image: linear-gradient(to bottom, #121212, #1a1a1a 60%, #121212);
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00c3ff;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    p {
+      text-align: center;
+      color: #aaaaaa;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    .matches-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      padding-bottom: 50px;
+    }
+
+    .match-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 30px 20px;
+      width: 360px;
+      box-shadow: 0 0 15px #00000055;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .match-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px #00c3ff66;
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .vs {
+      color: #00c3ff;
+      font-weight: normal;
+    }
+
+    .date {
+      text-align: center;
+      color: #cccccc;
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    .countdown {
+      text-align: center;
+      color: #00ff88;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .match-card {
+        width: 90%;
+      }
+
+      .teams {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="matches-container">
+
+    <!-- مباراة اليوم + العد التنازلي -->
+   
+
+    <div class="match-card">
+      <div class="teams">
+        <span>قروسل</span>
+        <span class="vs">vs</span>
+        <span>جمال</span>
+      </div>
+      <div class="date">غدًا</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <span>منغور</span>
+        <span class="vs">vs</span>
+        <span>جمال</span>
+      </div>
+      <div class="date">الأحد</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <span>عدلان</span>
+        <span class="vs">vs</span>
+        <span>موح</span>
+      </div>
+      <div class="date">الاثنين</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <span>قروسل</span>
+        <span class="vs">vs</span>
+        <span>منغور</span>
+      </div>
+      <div class="date">الثلاثاء</div>
+    </div>
+
+    <div class="match-card">
+      <div class="teams">
+        <span>طوبال</span>
+        <span class="vs">vs</span>
+        <span>عدلان</span>
+      </div>
+      <div class="date">الأربعاء</div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript للعد التنازلي -->
+  <script>
+    function startCountdown() {
+      const countdownElement = document.getElementById("countdown");
+
+      // إعداد التاريخ اليوم على الساعة 17:30
+      const now = new Date();
+      const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 30, 0); // اليوم الساعة 17:30
+
+      function updateCountdown() {
+        const currentTime = new Date();
+        const timeDiff = targetTime - currentTime;
+
+        if (timeDiff <= 0) {
+          countdownElement.textContent = "بدأت المباراة!";
+          return;
+        }
+
+        const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        countdownElement.textContent = `تبقّى ${hours} ساعة و ${minutes} دقيقة و ${seconds} ثانية`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    startCountdown();
+  </script>
+
+</body>
+</html>
